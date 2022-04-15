@@ -1,0 +1,22 @@
+{
+  "name": "seneca-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremylaw95/sen-task.git"
+  },
+  "author": "Jeremy Law",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeremylaw95/sen-task/issues"
+  },
+  "homepage": "https://github.com/jeremylaw95/sen-task#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
