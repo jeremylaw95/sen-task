@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon -r dotenv/config index.js",
+    "create": "node -r dotenv/config ./db/scripts/createTables.js",
+    "drop": "node -r dotenv/config ./db/scripts/dropTables.js",
+    "pop": "node -r dotenv/config ./db/scripts/populateTables.js",
+    "reinit": "node -r dotenv/config ./db/scripts/reinitialiseTables.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +22,13 @@
   },
   "homepage": "https://github.com/jeremylaw95/sen-task#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "js-yaml": "^4.1.0",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
