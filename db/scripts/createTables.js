@@ -2,14 +2,14 @@ const { query } = require('../dbSetup');
 
 async function createUsersTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS users (
-    id UUID NOT NULL,
+    id UUID NOT NULL UNIQUE,
     PRIMARY KEY (id))`);
   console.log(res);
 }
 
 async function createCoursesTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS courses (
-      id UUID NOT NULL,
+      id UUID NOT NULL UNIQUE,
       PRIMARY KEY (id)
   )`);
   console.log(res);
@@ -17,7 +17,7 @@ async function createCoursesTable() {
 
 async function createSessionsTable() {
   let res = await query(`CREATE TABLE sessions (
-      id UUID NOT NULL,
+      id UUID NOT NULL UNIQUE,
       user_id UUID NOT NULL REFERENCES users (id) ON DELETE CASCADE,
       course_id UUID NOT NULL REFERENCES courses (id) ON DELETE CASCADE,
       total_modules_studied INTEGER NOT NULL,

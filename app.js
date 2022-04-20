@@ -3,11 +3,14 @@ var app = express();
 var bodyParser = require('body-parser');
 var courses = require('./models/courses');
 var sessions = require('./models/sessions');
+var cors = require('cors');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
+
+app.use(cors());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -14,12 +14,12 @@ async function postSession(userId, courseId, statsDiff) {
     `INSERT INTO SESSIONS (id, user_id, course_id, total_modules_studied, average_score, time_studied)
     VALUES ($1, $2, $3, $4, $5, $6);`,
     [
-      uuidv4(),
+      statsDiff.sessionId,
       userId,
       courseId,
-      statsDiff.total_modules_studied,
-      statsDiff.average_score,
-      statsDiff.time_studied,
+      statsDiff.totalModulesStudied,
+      statsDiff.averageScore,
+      statsDiff.timeStudied,
     ]
   );
   return response.rows;

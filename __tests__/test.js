@@ -4,6 +4,7 @@ var request = supertest(app);
 var courseId = 'c2bc134c-c577-42bd-b9bd-1b4686ce7491';
 var sessionId = '19716f91-21a1-4a40-828c-37c106788387';
 var userId = '43c8adfb-ec0d-4db5-93d9-831d4acce063';
+const { v4: uuidv4 } = require('uuid');
 
 describe('User Endpoints', () => {
   it('GET /courses/:courseId/ should show user stats for a course', async () => {
@@ -15,20 +16,22 @@ describe('User Endpoints', () => {
     expect(typeof res.body.payload[0].total_modules_studied).toEqual('string');
     expect(typeof res.body.payload[0].average_score).toEqual('string');
     expect(typeof res.body.payload[0].time_studied).toEqual('string');
+    // test average score comes as percentage
+    expect(0 <= res.body.payload[0].average_score).toBe(true);
+    expect(0 <= res.body.payload[0].average_score <= 100).toBe(true);
   });
 
   it('POST /courses/:courseId/ should create a new session', async () => {
     const newSession = {
-      total_modules_studied: '1',
-      average_score: '50',
-      time_studied: '10000000',
+      sessionId: uuidv4(),
+      totalModulesStudied: '1',
+      averageScore: '50',
+      timeStudied: '10000000',
     };
     const res = await request
       .post('/courses/' + courseId)
       .send(newSession)
       .set('x-user-id', userId);
-    console.log(request);
-    console.log(res.body);
     expect(res.status).toBe(201);
     expect(res.type).toEqual(expect.stringContaining('json'));
     expect(
