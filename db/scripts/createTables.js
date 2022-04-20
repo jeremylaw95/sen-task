@@ -1,29 +1,29 @@
-const { query } = require('../index.js');
+const { query } = require('../dbSetup');
 
 async function createUsersTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY NOT NULL,
-    name TEXT NOT NULL
-)`);
+    id UUID NOT NULL,
+    PRIMARY KEY (id))`);
   console.log(res);
 }
 
 async function createCoursesTable() {
   let res = await query(`CREATE TABLE IF NOT EXISTS courses (
-      id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-      total_modules_studied INTEGER NOT NULL,
-      average_score INTEGER NOT NULL,
-      time_studied INTEGER NOT NULL
+      id UUID NOT NULL,
+      PRIMARY KEY (id)
   )`);
   console.log(res);
 }
 
 async function createSessionsTable() {
   let res = await query(`CREATE TABLE sessions (
-      id SERIAL PRIMARY KEY NOT NULL,
-      course_id INTEGER NOT NULL REFERENCES courses (id) ON DELETE CASCADE,
-      date DATE NOT NULL
+      id UUID NOT NULL,
+      user_id UUID NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+      course_id UUID NOT NULL REFERENCES courses (id) ON DELETE CASCADE,
+      total_modules_studied INTEGER NOT NULL,
+      average_score INTEGER NOT NULL,
+      time_studied INTEGER NOT NULL,
+      PRIMARY KEY (id)
   )`);
   console.log(res);
 }
@@ -33,8 +33,8 @@ const createAllTables = async () => {
   console.log('users created');
   await createCoursesTable();
   console.log('courses created');
-  // await createSessionsTable();
-  // console.log('sessions created');
+  await createSessionsTable();
+  console.log('sessions created');
 };
 
 module.exports = { createAllTables };

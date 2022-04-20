@@ -1,4 +1,4 @@
-const { query } = require('../index');
+const { query } = require('../dbSetup');
 
 async function dropUsersTable() {
   return await query('DROP TABLE IF EXISTS users cascade;');

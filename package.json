@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "nodemon -r dotenv/config index.js",
+    "test": "jest --setupFiles dotenv/config  --forceExit",
+    "test:watch": "jest --setupFiles dotenv/config --watch --detectOpenHandles",
+    "start": "nodemon -r dotenv/config ./bin/www",
     "create": "node -r dotenv/config ./db/scripts/createTables.js",
     "drop": "node -r dotenv/config ./db/scripts/dropTables.js",
     "pop": "node -r dotenv/config ./db/scripts/populateTables.js",
+    "get": "node -r dotenv/config ./db/scripts/getTables.js",
     "reinit": "node -r dotenv/config ./db/scripts/reinitialiseTables.js"
   },
   "repository": {
@@ -22,17 +24,19 @@
   },
   "homepage": "https://github.com/jeremylaw95/sen-task#readme",
   "dependencies": {
-    "cors": "^2.8.5",
+    "body-parser": "^1.20.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "js-yaml": "^4.1.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "jest": "^27.5.1",
+    "superagent-defaults": "^0.1.14",
     "supertest": "^6.2.2"
   },
   "jest": {
