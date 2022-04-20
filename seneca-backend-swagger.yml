@@ -4,7 +4,7 @@ info:
   version: '0.0.0'
   title: 'Stats Service'
   description: 'Provides persistence of stats'
-host: 'localhost:3000'
+host: 'localhost:8000'
 basePath: '/'
 schemes:
   - 'http'
@@ -23,12 +23,14 @@ paths:
           type: string
           format: uuid
           required: true
+          default: 43c8adfb-ec0d-4db5-93d9-831d4acce063
         - in: path
           name: courseId
           required: true
           type: string
           format: uuid
           description: Identifies the course
+          default: c2bc134c-c577-42bd-b9bd-1b4686ce7491
         - in: body
           name: stats diff
           required: true
@@ -40,10 +42,13 @@ paths:
                 format: uuid
               totalModulesStudied:
                 type: number
+                default: 10
               averageScore:
                 type: number
+                default: 70
               timeStudied:
                 type: number
+                default: 10000000
                 description: Type in milliseconds
 
       responses:
@@ -58,12 +63,14 @@ paths:
           name: X-User-Id
           type: string
           format: uuid
+          default: 43c8adfb-ec0d-4db5-93d9-831d4acce063
           required: true
         - in: path
           name: courseId
           required: true
           type: string
           format: uuid
+          default: c2bc134c-c577-42bd-b9bd-1b4686ce7491
           description: Identifies the course
 
       responses:
@@ -91,18 +98,21 @@ paths:
           name: X-User-Id
           type: string
           format: uuid
+          default: 43c8adfb-ec0d-4db5-93d9-831d4acce063
           required: true
         - in: path
           name: courseId
           required: true
           type: string
           format: uuid
+          default: c2bc134c-c577-42bd-b9bd-1b4686ce7491
           description: Identifies the course
         - in: path
           name: sessionId
           required: true
           type: string
           format: uuid
+          default: 3fa85f64-5717-4562-b3fc-2c963f66afa8
           description: Identifies the study session
 
       responses:

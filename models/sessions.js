@@ -1,5 +1,4 @@
 const { query } = require('../db/dbSetup');
-const { v4: uuidv4 } = require('uuid');
 
 async function getSession(sessionId, userId, courseId) {
   const response = await query(

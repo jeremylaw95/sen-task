@@ -12,10 +12,8 @@ app.use((req, res, next) => {
 
 app.use(cors());
 
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
 app.use(bodyParser.json());
 
 app.get('/courses/:courseId', async function (req, res) {
